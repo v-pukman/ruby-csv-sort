@@ -17,7 +17,7 @@ class Heap
   alias :<< :push
 
   def pop
-    return nil if size == 0
+    return nil if empty?
 
     swap(0, size - 1)
     item = @heap.pop
@@ -27,6 +27,10 @@ class Heap
 
   def size
     @heap.size
+  end
+
+  def empty?
+    size == 0
   end
 
   def peak

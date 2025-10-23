@@ -62,6 +62,16 @@ RSpec.describe Heap do
     end
   end
 
+  describe "#empty?" do
+    it "reflects the heap's size" do
+      expect(heap.empty?).to eq true
+      heap << 5
+      expect(heap.empty?).to eq false
+      heap.pop
+      expect(heap.empty?).to eq true
+    end
+  end
+
   context "when custom compare block is passed:" do
     let(:heap) do
       Heap.new do |a, b|
