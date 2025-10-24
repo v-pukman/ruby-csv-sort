@@ -2,6 +2,8 @@ require "csv"
 require_relative "heap"
 
 class CsvSortService
+  attr_reader :input_file, :output_file, :batch_size
+
   def initialize(input_file:, output_file:, batch_size:, &compare_block)
     @input_file = input_file
     @output_file = output_file
@@ -17,6 +19,10 @@ class CsvSortService
     merge
     cleanup
     @output_file
+  end
+
+  def compare_block
+    @compare_block
   end
 
   private
@@ -44,7 +50,7 @@ class CsvSortService
       [enum, get_next_row(enum)]
     end
 
-    heap = Heap.new {|a, b| @compare_block.call(a[1], b[1]) }
+    heap = Heap.new {|a, b| compare_block.call(a[1], b[1]) }
     enums.each {|data| heap << data }
 
     CSV.open(@output_file, "w", write_headers: true, headers: @headers) do |file|
@@ -60,7 +66,7 @@ class CsvSortService
   end
 
   def save_batch
-    heap = Heap.new(&@compare_block)
+    heap = Heap.new(&compare_block)
     heap << @rows.shift until @rows.empty?
 
     counter = @files.size + 1
