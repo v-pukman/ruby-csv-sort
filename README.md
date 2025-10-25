@@ -8,8 +8,9 @@
 require 'csv_sort_service'
 
 CsvSortService.new(input_file: "sample.csv", output_file: "sorted.csv", batch_size: 3) do |a, b|
-  a["amount"].to_f > b["amount"].to_f # your sorting logic - field and order
-end
+  # your sorting logic here - field and order
+  a["amount"].to_f > b["amount"].to_f
+end.call
 ```
 
 Or create your custom service by overriding `compare_block`. For example:
