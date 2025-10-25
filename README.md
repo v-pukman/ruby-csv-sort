@@ -42,14 +42,26 @@ rake csv_sort input_file="1_mil_sample.csv" output_file="1_mil_sorted.csv" batch
 
 ## Time and memory consumption
 
+Using `CsvSortService` based on `Heap` data structure:
+
 ```
 # 1 million rows with 10_000 batch size
 Time: 0.96 minutes
 Memory: 27.48 MB
-```
 
-```
 # 10 millions rows with 10_000 batch size
 Time: 15.46 minutes
 Memory: 215.03 MB
+```
+
+Using standard Ruby `Array#sort_by` method:
+
+```
+# 1 million rows
+Time: 0.16 minutes
+Memory: 879.06 MB
+
+# 10 millions rows
+Time: 10.42 minutes
+Memory: 3047.25 MB
 ```
