@@ -1,8 +1,8 @@
 # Sort Large CSV in Ruby
 
-## How to use
-
 `CsvSortService` implements CSV sorting functionality using `Heap` data structure. This provides large files processing with less memory and time consumption.
+
+## How to use
 
 ```
 require 'csv_sort_service'
