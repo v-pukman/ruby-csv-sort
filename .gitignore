@@ -1,4 +1,11 @@
 .DS_Store
 1_mil_sample.csv
+10_mil_sample.csv
 100_mil_sample.csv
-
+1_mil_sorted.csv
+10_mil_sorted.csv
+100_mil_sorted.csv
+1_mil_sorted_BAD.csv
+10_mil_sorted_BAD.csv
+100_mil_sorted_BAD.csv
+batch_*
