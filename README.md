@@ -7,7 +7,7 @@
 ```
 require 'csv_sort_service'
 
-CsvSortService.new(input_file: "sample.csv", output_file: "sorted.csv", batch_size: 3) do |a, b|
+CsvSortService.new(input_file: "sample.csv", output_file: "sorted.csv", batch_size: 300) do |a, b|
   # your sorting logic here - field and order
   a["amount"].to_f > b["amount"].to_f
 end.call
@@ -21,6 +21,9 @@ class CsvSortByAmountService < CsvSortService
     lambda{|a, b| a["amount"].to_f > b["amount"].to_f }
   end
 end
+
+# Then simply call the service:
+CsvSortByAmountService.new(input_file: "sample.csv", output_file: "sorted.csv", batch_size: 300).call
 ```
 
 ## Run tests
